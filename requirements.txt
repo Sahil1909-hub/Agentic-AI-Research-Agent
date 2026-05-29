@@ -13,3 +13,4 @@ uvicorn
 python-dotenv
 pypdf
 tavily-python
+langchain-tavily
