@@ -1,4 +1,5 @@
 from langchain_core.prompts import ChatPromptTemplate
+from utils.logger import logger
 
 
 critic_prompt = ChatPromptTemplate.from_template(
@@ -27,3 +28,5 @@ Document Research:
 Provide a detailed critique.
 """
 )
+
+logger.info('Critic prompt ready..')

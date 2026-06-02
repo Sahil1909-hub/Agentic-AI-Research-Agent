@@ -1,4 +1,5 @@
 from langchain_core.prompts import ChatPromptTemplate
+from utils.logger import logger
 
 
 summary_prompt = ChatPromptTemplate.from_template(
@@ -36,3 +37,5 @@ Critic Feedback:
 Generate the final answer.
 """
 )
+
+logger.info('Summary prompt ready..')

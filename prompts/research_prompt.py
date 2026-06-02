@@ -1,4 +1,5 @@
 from langchain_core.prompts import ChatPromptTemplate
+from utils.logger import logger
 
 
 research_prompt = ChatPromptTemplate.from_template(
@@ -24,3 +25,5 @@ Search Results:
 Return detailed research notes.
 """
 )
+
+logger.info('Research prompt ready..')

@@ -1,5 +1,5 @@
 from langchain_core.prompts import ChatPromptTemplate
-
+from utils.logger import logger
 
 planner_prompt = ChatPromptTemplate.from_template(
     """
@@ -29,3 +29,5 @@ User Query:
 {query}
 """
 )
+
+logger.info('Planner prompt ready..')
