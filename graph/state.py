@@ -1,8 +1,15 @@
-from typing import TypedDict
+from typing import Annotated
+from typing_extensions import TypedDict
+
+from langgraph.graph.message import add_messages
+
 
 class AgentState(TypedDict):
 
-    query: str
+    messages: Annotated[
+        list,
+        add_messages
+    ]
 
     route: str
 
@@ -15,5 +22,3 @@ class AgentState(TypedDict):
     summary: str
 
     final_answer: str
-
-    
