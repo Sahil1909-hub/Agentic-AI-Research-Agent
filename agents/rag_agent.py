@@ -3,21 +3,30 @@ from tools.vector_search_tool import retrieve_documents
 from utils.logger import logger
 
 
-rag_llm = llm.bind_tools(
-    [retrieve_documents]
-)
-
 def rag_node(state):
 
     logger.info("RAG agent started")
 
-    response = rag_llm.invoke(
-        state['messages']
+    query = state["messages"][-1].content
+
+    context = retrieve_documents.invoke(query)
+
+    response = llm.invoke(
+        f"""
+        Answer the question using the context below.
+
+        Context:
+        {context}
+
+        Question:
+        {query}
+        """
     )
 
     logger.info("RAG agent finished")
 
     return {
-        "messages": [response]
+        "messages": [response],
+        "query": query,
+        "rag_results": context
     }
-

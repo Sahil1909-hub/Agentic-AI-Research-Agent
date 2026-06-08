@@ -19,7 +19,7 @@ def summarizer_node(state):
         "Summarizer Agent Started"
     )
 
-    query = state["messages"][-1].content
+    query = state['query']
 
     response = summary_chain.invoke(
         {
@@ -37,6 +37,14 @@ def summarizer_node(state):
                 ""
             )
         }
+    )
+
+    logger.info(
+    f"Web Results: {state.get('web_results', '')}"
+)
+
+    logger.info(
+        f"RAG Results: {state.get('rag_results', '')}"
     )
 
     logger.info(

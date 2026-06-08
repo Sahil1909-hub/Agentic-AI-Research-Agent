@@ -18,6 +18,16 @@ def retrieve_documents(query: str):
 
         docs = retriever.invoke(query)
 
+        docs = retriever.invoke(query)
+
+        print("\n===== RETRIEVED DOCS =====\n")
+
+        for i, doc in enumerate(docs):
+            print(f"\n--- DOC {i+1} ---")
+            print(doc.page_content[:500])
+
+        print("\n==========================\n")
+
         if not docs:
             return "No relevant documents found."
         
@@ -26,6 +36,10 @@ def retrieve_documents(query: str):
                 doc.page_content for doc in docs
             ]
         )
+
+        print("\n========== RETRIEVED ==========\n")
+        print(context[:1000])
+        print("\n===============================\n")
 
         return context
     
@@ -36,5 +50,3 @@ def retrieve_documents(query: str):
         )
 
         return f"Error: {str(e)}"
-
-    return docs

@@ -3,24 +3,8 @@ from utils.logger import logger
 
 
 summary_prompt = ChatPromptTemplate.from_template(
-    """
-You are an expert AI Research Assistant.
-
-Create a final response using:
-
-1. Web research findings
-2. Document findings
-3. Critic feedback
-
-Requirements:
-
-- Accurate
-- Concise but informative
-- Well structured
-- Easy to read
-- Use headings where appropriate
-- Include key facts
-- Mention important limitations
+"""
+You are a Senior AI Research Assistant.
 
 User Query:
 {query}
@@ -31,11 +15,18 @@ Web Research:
 Document Research:
 {rag_results}
 
-Critic Feedback:
+Research Review:
 {critique}
 
-Generate the final answer.
+Instructions:
+
+1. Answer the user's question directly.
+2. Use web and document research.
+3. Ignore reviewer comments that are not necessary for answering the query.
+4. Do NOT mention missing information unless it prevents answering the question.
+5. Do NOT include critique, reviewer notes, limitations, or follow-up searches in the final answer.
+6. Produce a professional and complete response.
+
+Return only the final answer.
 """
 )
-
-logger.info('Summary prompt ready..')

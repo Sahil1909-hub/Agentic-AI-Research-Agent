@@ -1,20 +1,20 @@
 from langchain_tavily import TavilySearch
-import os
-from dotenv import load_dotenv
-from utils.logger import logger
 from langchain.tools import tool
+from utils.logger import logger
+from dotenv import load_dotenv
 
 load_dotenv()
 
-search_tool = TavilySearch(
-        max_results=5
-    )
-
+tavily_search = TavilySearch(
+    max_results=5
+)
 
 @tool
 def search_tool(query: str):
-    """ Search the web for recent information.
-    Use this tool whenever internet research is required."""
+    """
+    Search the web for recent information.
+    Use this tool whenever internet research is required.
+    """
 
     logger.info(
         f"Web Search Tool Called: {query}"
@@ -22,18 +22,14 @@ def search_tool(query: str):
 
     try:
 
-        search_result = search_tool.invoke(query)
-        
+        search_result = tavily_search.invoke(query)
+
         return str(search_result)
-    
-    except Exception as e: 
+
+    except Exception as e:
 
         logger.error(
             f"Web Search Error: {e}"
         )
 
         return f"Error: {str(e)}"
-
-
-
-logger.info('Web search tool created..')

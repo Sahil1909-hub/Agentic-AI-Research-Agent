@@ -2,31 +2,29 @@ from langchain_core.prompts import ChatPromptTemplate
 from utils.logger import logger
 
 
-critic_prompt = ChatPromptTemplate.from_template(
-    """
-You are a Senior AI Critic Agent.
+critic_prompt = ChatPromptTemplate.from_template("""
+You are a research critic.
 
-Review the information collected by other agents.
+Analyze the research answer carefully.
 
-Tasks:
+Determine whether the information is sufficient to answer the user query.
 
-1. Identify missing information.
-2. Identify weak arguments.
-3. Detect contradictions.
-4. Detect unsupported claims.
-5. Suggest improvements.
+Return ONLY valid JSON.                                         
+                                                 
+
+Schema:
+
+{{
+  "sufficient": "YES or NO",
+  "missing_information": [],
+  "follow_up_searches": []
+}}
 
 User Query:
 {query}
 
-Web Research:
-{web_results}
+Research Findings:
+{research}
+""")
 
-Document Research:
-{rag_results}
-
-Provide a detailed critique.
-"""
-)
-
-logger.info('Critic prompt ready..')
+logger.info("Critic prompt created")
